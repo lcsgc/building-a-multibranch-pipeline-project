@@ -11,9 +11,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'apt-get update'
-                sh 'apt-get install sudo'
-                sh 'sudo npm install'
+                sh 'mkdir ~/.npm-global'
+                sh 'npm config set prefix '~/.npm-global'
+		sh 'export PATH=~/.npm-global/bin:$PATH'
+		sh 'source ~/.profile'
+                sh 'npm install'
             }
         }
         stage('Test') {
