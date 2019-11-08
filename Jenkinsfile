@@ -11,6 +11,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'apt-get update'
+                sh 'apt-get install sudo'
                 sh 'sudo npm install'
             }
         }
